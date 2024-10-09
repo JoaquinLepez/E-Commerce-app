@@ -1,0 +1,3 @@
+[submodule "ms-catalogo"]
+	path = ms-catalogo
+	url = https://github.com/JoaquinLepez/ms-catalogo.git
