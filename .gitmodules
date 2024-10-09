@@ -7,3 +7,6 @@
 [submodule "ms-pagos"]
 	path = ms-pagos
 	url = https://github.com/JoaquinLepez/ms-pagos.git
+[submodule "ms-inventario"]
+	path = ms-inventario
+	url = https://github.com/JoaquinLepez/ms-inventario.git
