@@ -4,3 +4,6 @@
 [submodule "ms-compras"]
 	path = ms-compras
 	url = https://github.com/JoaquinLepez/ms-compras.git
+[submodule "ms-pagos"]
+	path = ms-pagos
+	url = https://github.com/JoaquinLepez/ms-pagos.git
