@@ -17,7 +17,7 @@ def index():
 @e_commerce.route('/e_commerce/producto/<int:producto_id>', methods=['GET'])
 def get_product(producto_id):
     response_builder = ResponseBuilder()
-    r = requests.get(f'http://127.0.0.1:3001/api/v1/productos/{producto_id}')
+    r = requests.get(f'http://ms-catalogo:3001/api/v1/productos/{producto_id}')
     if r.status_code == 200:
         data = r.json().get('data')
         response_builder.add_data(data).add_status_code(200).add_message('Producto found')
