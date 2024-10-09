@@ -11,7 +11,7 @@ class OrquestadorSaga:
             data['compra_key'] = r.json().get('data').get('id')
             return self.add_pago(data)
         else:
-            return None, "Fallo en request_compra", r.status_code
+            return r.json().get('data'), "Fallo en request_compra", r.status_code
 
     def add_pago(self,data):
         data_pago = data.get('pago')
@@ -22,7 +22,7 @@ class OrquestadorSaga:
             return self.add_stock(data)
         else:
             self.compensate_compra(data)
-            return None, "Fallo en request_pago", r.status_code
+            return r.json().get('data'), "Fallo en request_pago", r.status_code
     
     def add_stock(self,data):
         data_stock = data.get('stock')
@@ -33,7 +33,7 @@ class OrquestadorSaga:
             return None, 'El producto fue comprado con exito', r.status_code
         else:
             self.compensate_pago(data)
-            return None, "Fallo en request_stock", r.status_code
+            return r.json().get('data'), "Fallo en request_stock", r.status_code
         
     def compensate_compra(self,data):
         compra_key = data.get('compra_key')
