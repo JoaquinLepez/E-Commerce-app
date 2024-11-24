@@ -1,7 +1,8 @@
-from flask import Blueprint, current_app, request
+from flask import Blueprint, request
 import requests
 from ..services import ResponseBuilder, SagaBuilder, CompraService, InventarioService, PagoService, CatalogoService
 from ..mapping import ResponseSchema
+
 
 response_schema = ResponseSchema()
 
@@ -22,16 +23,16 @@ def index():
 @e_commerce.route('/e_commerce/producto/<int:id>', methods=['GET'])
 def get_product(id):
     response_builder = ResponseBuilder()
-    r = requests.get(current_app.config['CATALOGO_URL'] + f'{id}')
+    message = 'No se encontro el producto'
+    status_code = 404
+    producto = catalogo.obtener_producto(id)
+    
+    if producto:
+        message = 'Producto encontrado'
+        status_code = 200
 
-    if r.status_code == 200:
-        data = r.json().get('data')
-        response_builder.add_data(data).add_status_code(200).add_message('Producto found')
-        return response_schema.dump(response_builder.build()), 200
-    else:
-        data = r.json().get('data')
-        response_builder.add_data(data).add_status_code(404).add_message('Producto not found')
-        return response_schema.dump(response_builder.build()), 404
+    response_builder.add_message(message).add_status_code(status_code).add_data(producto.json())
+    return response_schema.dump(response_builder.build()), status_code
 
 @e_commerce.route('/e_commerce/compra', methods=['POST'])
 def create_compra():

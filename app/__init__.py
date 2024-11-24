@@ -1,7 +1,9 @@
 from flask import Flask
+from flask_caching import Cache
 import os
-from app.config import config
+from app.config import config, cache_config
 
+cache = Cache()
 
 def create_app():
     app_context = os.getenv("FLASK_CONTEXT")
@@ -11,6 +13,7 @@ def create_app():
     configuration = config[app_context if app_context else 'development']
     app.config.from_object(configuration)
 
+    cache.init_app(app, config=cache_config)
 
     from app.resources import e_commerce
     app.register_blueprint(e_commerce, url_prefix='/api/v1')
