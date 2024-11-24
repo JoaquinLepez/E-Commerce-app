@@ -11,13 +11,21 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
+    CATALOGO_URL = os.environ.get('CATALOGO_DEV_URL')
+    COMPRAS_URL = os.environ.get('COMPRAS_DEV_URL')
+    PAGOS_URL = os.environ.get('PAGOS_DEV_URL')
+    INVENTARIO_URL = os.environ.get('INVENTARIO_DEV_URL')
 
 class TestingConfig(Config):
-    TESTING= True
+    TESTING = True
 
 class ProductionConfig(Config):
     DEBUG = False
     TESTING = False
+    CATALOGO_URL = os.environ.get('CATALOGO_PROD_URL')
+    COMPRAS_URL = os.environ.get('COMPRAS_PROD_URL')
+    PAGOS_URL = os.environ.get('PAGOS_PROD_URL')
+    INVENTARIO_URL = os.environ.get('INVENTARIO_PROD_URL')
 
 config = {
     'development': DevelopmentConfig,

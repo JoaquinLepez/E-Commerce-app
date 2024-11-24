@@ -11,7 +11,8 @@ def create_app():
     configuration = config[app_context if app_context else 'development']
     app.config.from_object(configuration)
 
-    from app.resource import e_commerce
+
+    from app.resources import e_commerce
     app.register_blueprint(e_commerce, url_prefix='/api/v1')
 
     return app

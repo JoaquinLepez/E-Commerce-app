@@ -48,4 +48,4 @@ class OrquestadorSaga:
     def compensate_stock(self,data):
         stock_key = data.get('stock_key')
         requests.delete(f'http://ms-inventario:3004/api/v1/inventario/{stock_key}')
-        self.compensate_compra(data)
+        self.compensate_pago(data)
