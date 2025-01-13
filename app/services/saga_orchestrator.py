@@ -27,7 +27,7 @@ class Saga:
        
        def execute(self):
             
-            self.response['data'] = "Compra realizada con éxito"
+            self.response['data'] = "Compra realizada con exito"
             self.response['status_code'] = 201
             self.response['message'] = "OK"
 
@@ -46,7 +46,7 @@ class Saga:
                  except Exception as e:
                       self.response['data'] = str(e)
                       self.response['status_code'] = 500
-                      self.response['message'] = "ERROR desde SAGA"
+                      self.response['message'] = "ERROR desde SAGA en " + str(index)
                       self.compensate(index)
                       break
             

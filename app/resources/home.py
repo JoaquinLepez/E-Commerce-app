@@ -2,9 +2,7 @@ from flask import Blueprint, request
 from app.services import ResponseBuilder, EcommerceService
 from ..mapping import ResponseSchema
 
-
 response_schema = ResponseSchema()
-
 ecommerce_service = EcommerceService()
 
 e_commerce = Blueprint('e_commerce', __name__)
@@ -33,21 +31,8 @@ def consultar_producto(id):
 @e_commerce.route('/e_commerce/compra', methods=['POST'])
 def comprar_producto():
     response_builder = ResponseBuilder()
-    compra_data = request.json
+    compra_data = request.get_json()
     compra = ecommerce_service.comprar_producto(compra_data)
-    return compra
 
-
-# @e_commerce.route('/e_commerce/compra', methods=['POST'])
-# def create_compra():
-#     response_builder = ResponseBuilder()
-#     data = request.json
-#     response = SagaBuilder()  \
-#     .action(compra.comprar,compra.borrar_compra) \
-#     .action(pago.agregar_pago,pago.borrar_pago) \
-#     .action(inventario.agregar_stock,inventario.borrar_stock) \
-#     .set_data(data) \
-#     .build() \
-#     .execute()
-#     response_builder.add_data(response['data']).add_status_code(response['status_code']).add_message(response['message'])
-#     return response_schema.dump(response_builder.build()), response['status_code']
+    response_builder.add_data(compra['data']).add_status_code(compra['status_code']).add_message(compra['message'])
+    return response_schema.dump(response_builder.build()), compra['status_code']

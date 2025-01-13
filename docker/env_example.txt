@@ -1,3 +1,0 @@
-FLASK_CONTEXT=production
-FLASK_APP = app.py
-SECRET_KEY = contraseña
