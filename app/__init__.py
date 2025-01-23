@@ -13,7 +13,8 @@ def create_app():
     configuration = config[app_context if app_context else 'development']
     app.config.from_object(configuration)
 
-    cache.init_app(app, config=cache_config)
+    cache_configuration = cache_config[app_context if app_context else 'development']
+    cache.init_app(app, config=cache_configuration)
 
     from app.resources import e_commerce
     app.register_blueprint(e_commerce, url_prefix='/api/v1')

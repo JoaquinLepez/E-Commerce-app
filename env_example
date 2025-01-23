@@ -1,7 +1,33 @@
 FLASK_APP=app.py
 SECRET_KEY=contraseña
 FLASK_CONTEXT=development
-DEV_DB_URI=postgresql://usuario:contraseña@red:puerto/nombre_database
-TEST_DB_URI=postgresql://usuario:contraseña@red:puerto/nombre_database
-PROD_DB_URI=postgresql://usuario:contraseña@red:puerto/nombre_database
 
+
+CATALOGO_URL=http://host:port/api/v1/route/
+COMPRAS_URL=http://host:port/api/v1/route/
+PAGOS_URL=http://host:port/api/v1/route/
+INVENTARIO_URL=http://host:port/api/v1/route/
+
+
+CATALOGO_PROD_URL=http://host:port/api/v1/route/
+COMPRAS_PROD_URL=http://host:port/api/v1/route/
+PAGOS_PROD_URL=http://host:port/api/v1/route/
+INVENTARIO_PROD_URL=http://host:port/api/v1/route/
+
+
+CATALOGO_DEV_URL=http://host:port/api/v1/route/
+COMPRAS_DEV_URL=http://host:port/api/v1/route/
+PAGOS_DEV_URL=http://host:port/api/v1/route/
+INVENTARIO_DEV_URL=http://host:port/api/v1/route/
+
+# Development
+DEV_REDIS_HOST=host
+DEV_REDIS_PORT=port
+DEV_REDIS_DB=1
+DEV_REDIS_PASSWORD=password
+
+# Production
+REDIS_HOST=host
+REDIS_PORT=port
+REDIS_DB=1
+REDIS_PASSWORD=password
